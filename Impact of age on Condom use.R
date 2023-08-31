@@ -75,7 +75,7 @@ head(IRPRdata)
 ### Outcome variable ### 
   
   # Condom use among women.
-  # Recode to exclude those that have not had intercourse in last 12 months
+  # Recode to exclude those with inconsistent data. 
  
 IRPRdata <- IRPRdata %>%
   mutate(condomuse = case_when(
@@ -85,9 +85,6 @@ IRPRdata <- IRPRdata %>%
     condomuse = set_value_labels(condomuse, labels = c("Did not use condom"=0, "Used condom"=1)),
     condomuse = set_variable_labels(condomuse, label = "Condom use at last sexual intercourse in the past 12 months"))%>%
   replace_with_na(replace = list(condomuse = c(99)))
-  
-# in the above code we use NA_integer_ to replace as missing there is inconsistent data for v531 age at first sex.
-
 
 # education: recode v106 to combine primary and higher categories
 IRPRdata <- IRPRdata %>%
@@ -104,7 +101,7 @@ IRPRdata <- IRPRdata %>%
 # place of residence: use v025
 # region: use v024
 
-# creating the sampling weight variable. We need it in our reduced dataset.
+# creating the sampling weight variable. We need it in our reduced dataset or else there will be an error.
   IRPRdata$wt <- IRPRdata$v005/1000000
   
 vars <- c("condomuse","v013","educ","v502", "v190","v025","v024","v005", "v007", "wt","v021","v022","v001","v002","v003")
