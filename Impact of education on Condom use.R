@@ -197,7 +197,7 @@ ORreg1 <- exp(reg1$coefficients )
 ORreg1
 
 # Interpretation:
-# The unadjusted result shows that women between 15-49 years who report to have had intercourse in the last 12 months 
+# The unadjusted result shows that educated women (primary and above) aged 15-49 years who report to have had intercourse in the last 12 months 
 # have 4.7 times the odds of using a condom compared to women with no education.
 
 # now we will include the background variables social-demographic in our varaiables in our model.
@@ -215,5 +215,5 @@ ORreg2
 
 # Interpretation:
 # After controlling for other variables, education was found to be significantly associated with condom use
-# among women between 15-49 years who report to have had intercourse in the last 12 months. Educated women (primary and above) Women with 
-# had 1.55 times higher odds n using condoms compared to un-educated women.
+# among women between 15-49 years who report to have had intercourse in the last 12 months. Educated women (primary and above)   
+# had 1.55 times higher odds using condoms compared to un-educated women.
