@@ -4,7 +4,7 @@
 #   Author: Albert Lutakome
 # 	Date Last Modified: August 30, 2023 by Albert Lutakome
 # 
-# Notes/Instructions:
+# Notes:
 # 
 # * Model dataset can be download  at: https://www.dhsprogram.com/data/Model-Datasets.cfm
 # * For the code below to work, you must save the dataset in same folder as do file.  
@@ -42,7 +42,7 @@ here()
 
 # Merging IR and PR file
 
-# Step 1. Open your using data file
+# Step 1. Open secondary dataset
 PRdata <-  read_dta(here("KEPR8AFL.DTA"))
 
 # Step 2. Rename IDs (uniquely identify a case)
@@ -61,11 +61,7 @@ IRPRdata <- merge(IRdata,PRdata,by=c("v001", "v002", "v003"))
 #library(foreign) 
 #write.dta(IRPRdata, here("KEIRPR8AFL.DTA"))
 
-# *******************************************************************************
-# open merged dataset and assign it to wmdata variable 
-#wmdata <-  read_dta(here("KEIRPR8AFL.DTA"))
-
-# Check our imported data and proceed if all is well. 
+# Check our merged data and proceed if all is well. 
 head(IRPRdata)
 
 ##############################
@@ -73,8 +69,7 @@ head(IRPRdata)
 ##############################
   
 ### Outcome variable ### 
-  
-  # Condom use among women.
+# Condom use among women.
   # Recode to exclude those with inconsistent data. 
  
 IRPRdata <- IRPRdata %>%
@@ -118,27 +113,23 @@ cudata <- IRPRdata %>%
 # attaching data 
 attach(cudata)
 
-### Setting the survey design using the svydesign command from the survey package ###
+### Setting the survey design using the svydesign command###
 # the survey design will be saved in an object named mysurvey. 
 mysurvey<-svydesign(id=cudata$v021, data=cudata, strata=cudata$v022,  weight=cudata$wt, nest=T)
 options(survey.lonely.psu="adjust") 
   
 ####################################################
-### Descriptive Statistics and Crosstabulations ### 
+###  Statistics and Crosstabulations ### 
 ###################################################
 
 #### Descriptive table ####
-# this table will include all the variables in your analysis (would be your Table 1 of your results)
-# The variables are tabulated among women currently in a union since this is our analytical sample
-
 # you can use the following code for checking the proportions of a variable
 prop.table(svytable(~condomuse, mysurvey))
-
-# to export a table of the weighted percentages of all your variables you can use the following code
 
 # dummy var for all women in our reduced dataset
 cudata <- cudata %>% mutate(cu_all = case_when(v007>0  ~ "all"))
 
+# Descriptive table:
 # set expss package options to show one decimal place
 expss_digits(digits=1)
 
