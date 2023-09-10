@@ -126,7 +126,7 @@ options(survey.lonely.psu="adjust")
 # you can use the following code for checking the proportions of a variable
 prop.table(svytable(~condomuse, mysurvey))
 
-# dummy var for all women in our reduced dataset
+# all women in reduced dataset
 cudata <- cudata %>% mutate(cu_all = case_when(v007>0  ~ "all"))
 
 # Descriptive table:
@@ -185,8 +185,6 @@ for (var in variables) {
 ####  regression #### 
 #### Unadjusted regression ####
 # we fit an unadjusted logistic regression 
-
-# unadjusted with exposure to family planning messages. Ignore the warning message!
 reg1 <- svyglm(condomuse~ 1 + educ , design=mysurvey, family=binomial(link="logit"))
 
 # to see the results
@@ -217,3 +215,22 @@ ORreg2
 # After controlling for other variables, education was found to be significantly associated with condom use
 # among women between 15-49 years who report to have had intercourse in the last 12 months. Educated women (primary and above)   
 # had 1.55 times higher odds using condoms compared to un-educated women.
+
+
+#Note on multi-collinearity: 
+# In practical cases, we need to check for multi-collinearity within the independent variables before fitting the model.  
+correl <- cudata[, variables]
+# Calculate the correlation matrix
+cor_matrix <- cor(correl)
+print(cor_matrix)
+
+# to produce a correlation plot
+install.packages("corrplot")
+library(corrplot)
+
+corrplot(cor_matrix)
+# For instance, there is a relatively high correlation between v025 and v19. It is advisable not to include both variables in the model at the same time. 
+
+
+
+
