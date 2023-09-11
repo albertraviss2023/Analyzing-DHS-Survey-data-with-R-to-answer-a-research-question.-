@@ -229,8 +229,8 @@ install.packages("corrplot")
 library(corrplot)
 
 corrplot(cor_matrix)
-# For instance, there is a relatively high correlation between v025 and v19. It is advisable not to include both variables in the model at the same time. 
-
+# For instance, there is a relatively high correlation between v025 and v19. In practical situations, it is advisable not to include both variables  
+# in the model at the same time to better interpret the contribution of each to the outcome variable.  
 
 
 
