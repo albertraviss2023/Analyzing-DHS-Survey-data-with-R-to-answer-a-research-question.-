@@ -1,5 +1,5 @@
 #####################################################################################
-#   Purpose: Studying the impact of education on condom use by women
+#   
 #   Data input: The model dataset women's file (IR file)
 #   Author: Albert Lutakome
 # 	Date Last Modified: August 30, 2023 by Albert Lutakome
@@ -9,9 +9,9 @@
 # * Model dataset can be download  at: https://www.dhsprogram.com/data/Model-Datasets.cfm
 # * For the code below to work, you must save the dataset in same folder as do file.  
 # 
-# * Research question: 
-#   What is the effect of education on condom use by women?  
-# 
+# * Sample research question (for demonstration purposes only):
+#   After controlling for other social-demographic variables (wealth, age, residence and region), does education 
+#   have an effect on condom use by women aged 15-49?  
 # !!!! More instructions in the do file
 #####################################################################################
 
