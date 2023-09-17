@@ -6,7 +6,7 @@
 # 
 # Notes:
 # 
-# * Model dataset can be download  at: https://www.dhsprogram.com/data/Model-Datasets.cfm
+# 
 # * For the code below to work, you must save the dataset in same folder as do file.  
 # 
 # * Sample research question (for demonstration purposes only):
